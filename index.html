@@ -31,7 +31,7 @@
       <h1>Nyeri County ECDE Renovation Tracker</h1>
       <p>Monitoring Early Childhood Development Infrastructure and Performance</p>
       <!-- Explore Nyeri as a functional button -->
-      <button class="btn" onclick="loadSubCounties(); scrollToSection('main-content');">Explore Nyeri</button>
+      <button class="btn" id="explore-btn">Explore Nyeri</button>
     </div>
   </section>
 
@@ -82,10 +82,19 @@
     <div class="container">
       <h2>Get In Touch</h2>
       <form id="contact-form">
-        <input type="text" id="contact-name" placeholder="Your Name" required/>
-        <input type="email" id="contact-email" placeholder="Your Email" required/>
-        <textarea id="contact-message" placeholder="Your Message or Feedback" rows="5" required></textarea>
-        <button type="submit" class="btn">Send Message</button>
+        <div class="form-group">
+          <input type="text" id="contact-name" required />
+          <label for="contact-name">Your Name</label>
+        </div>
+        <div class="form-group">
+          <input type="email" id="contact-email" required />
+          <label for="contact-email">Your Email</label>
+        </div>
+        <div class="form-group">
+          <textarea id="contact-message" rows="5" required></textarea>
+          <label for="contact-message">Your Message or Feedback</label>
+        </div>
+        <button type="submit" class="btn futuristic-btn">Send Message</button>
       </form>
     </div>
   </section>
@@ -93,7 +102,7 @@
   <!-- Footer with Terms -->
   <footer>
     <p>&copy; 2025 Dantedone. All rights reserved. |
-        <a href="#terms" onclick="showTerms(); return false;" style="color: #a0d6a0; text-decoration: underline;">Terms & Conditions</a>
+        <a href="#" id="terms-link" style="color: #a0d6a0; text-decoration: underline;">Terms & Conditions</a>
     </p>
   </footer>
   <!-- Load JavaScript -->

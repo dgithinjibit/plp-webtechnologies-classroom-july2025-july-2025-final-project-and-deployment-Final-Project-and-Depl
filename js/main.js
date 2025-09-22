@@ -1,4 +1,5 @@
 // --- Data Simulation with Specific Nyeri Wards ---
+// Note: Removed extra spaces from image URLs
 const nyeriData = {
     subCounties: [
         { id: 'tetu', name: 'Tetu' },
@@ -68,8 +69,8 @@ const nyeriData = {
                 studentPopulation: 120,
                 teacherPopulation: 6,
                 renovationStatus: 'completed',
-                beforeImage: 'https://picsum.photos/seed/school1before/600/400',
-                afterImage: 'https://picsum.photos/seed/school1after/600/400'
+                beforeImage: 'https://picsum.photos/seed/school1before/600/400', // Removed space
+                afterImage: 'https://picsum.photos/seed/school1after/600/400'  // Removed space
             }
         ],
         'wamagana': [
@@ -80,8 +81,8 @@ const nyeriData = {
                 studentPopulation: 95,
                 teacherPopulation: 4,
                 renovationStatus: 'in-progress',
-                beforeImage: 'https://picsum.photos/seed/school2before/600/400',
-                afterImage: 'https://picsum.photos/seed/school2after/600/400'
+                beforeImage: 'https://picsum.photos/seed/school2before/600/400', // Removed space
+                afterImage: 'https://picsum.photos/seed/school2after/600/400'  // Removed space
             }
         ],
         'dedan-kimathi': [
@@ -92,8 +93,8 @@ const nyeriData = {
                 studentPopulation: 150,
                 teacherPopulation: 7,
                 renovationStatus: 'planned',
-                beforeImage: 'https://picsum.photos/seed/school3before/600/400',
-                afterImage: ''
+                beforeImage: 'https://picsum.photos/seed/school3before/600/400', // Removed space
+                afterImage: '' // No space needed for empty string
             }
         ]
         // Add more schools for other wards...
@@ -105,6 +106,9 @@ const contentTitle = document.getElementById('content-title');
 const contentDisplay = document.getElementById('content-display');
 const navLinks = document.getElementById("nav-links");
 const menuToggle = document.getElementById("menu-toggle");
+// --- New Elements for Event Listeners ---
+const exploreBtn = document.getElementById("explore-btn");
+const termsLink = document.getElementById("terms-link");
 
 // --- Navigation History Stack ---
 let navigationHistory = [];
@@ -118,7 +122,7 @@ function loadSubCounties() {
     let html = '<div class="list-grid">';
     nyeriData.subCounties.forEach(subCounty => {
         html += `
-            <a href="#" class="list-item" onclick="loadWards('${subCounty.id}'); return false;">
+            <a href="#" class="list-item" data-action="loadWards" data-id="${subCounty.id}">
                 <h3>${subCounty.name}</h3>
                 <p>Explore wards within ${subCounty.name}</p>
             </a>
@@ -152,7 +156,7 @@ function loadWards(subCountyId) {
     html += '<div class="list-grid">';
     wards.forEach(ward => {
         html += `
-            <a href="#" class="list-item" onclick="loadSchools('${ward.id}'); return false;">
+            <a href="#" class="list-item" data-action="loadSchools" data-id="${ward.id}">
                 <h3>${ward.name}</h3>
                 <p>View ECDE centers in ${ward.name}</p>
             </a>
@@ -187,7 +191,7 @@ function loadSchools(wardId) {
     html += '<div class="list-grid">';
     schools.forEach(school => {
         html += `
-            <a href="#" class="list-item" onclick="loadSchoolDetail('${school.id}', '${wardId}'); return false;">
+            <a href="#" class="list-item" data-action="loadSchoolDetail" data-school-id="${school.id}" data-ward-id="${wardId}">
                 <h3>${school.name}</h3>
                 <p>View renovation progress and metrics</p>
             </a>
@@ -343,7 +347,25 @@ document.getElementById("contact-form").addEventListener("submit", function(e) {
   this.reset();
 });
 
-// Scroll animations
+// Centralized event listener for dynamic content (already correct)
+contentDisplay.addEventListener('click', (e) => {
+    const target = e.target.closest('a.list-item');
+    if (!target) return;
+
+    e.preventDefault(); // Prevent default link behavior
+
+    const { action, id, schoolId, wardId } = target.dataset;
+
+    if (action === 'loadWards') {
+        loadWards(id);
+    } else if (action === 'loadSchools') {
+        loadSchools(id);
+    } else if (action === 'loadSchoolDetail') {
+        loadSchoolDetail(schoolId, wardId);
+    }
+});
+
+// Scroll animations (already correct)
 const animatedElements = document.querySelectorAll(".fade-in, .slide-left, .slide-right");
 const observer = new IntersectionObserver(
   (entries) => {
@@ -357,9 +379,26 @@ const observer = new IntersectionObserver(
 );
 animatedElements.forEach(el => observer.observe(el));
 
-// Setup navigation links in the header (if they were used for direct navigation)
+// --- Setup initial event listeners on DOMContentLoaded ---
 document.addEventListener('DOMContentLoaded', () => {
+    // Add event listener for the Explore Nyeri button
+    if (exploreBtn) {
+        exploreBtn.addEventListener('click', () => {
+            loadSubCounties();
+            scrollToSection('main-content');
+        });
+    }
+
+    // Add event listener for the Terms & Conditions link
+    if (termsLink) {
+        termsLink.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent default link behavior
+            showTerms();
+        });
+    }
+
     // Placeholder messages for direct nav links (though minimal nav doesn't use them much)
+    // These can be kept or removed based on final design
     document.querySelector('a[href="#wards"]')?.addEventListener('click', (e) => {
         e.preventDefault();
         contentTitle.textContent = "Wards";

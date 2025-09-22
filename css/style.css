@@ -25,12 +25,7 @@ body {
   font-family: 'Poppins', sans-serif;
   line-height: 1.6;
   background: var(--light);
-  color: var(--dark);
-  background-image: url("../images/nyeri-county.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  color: var(--text);
 }
 
 /* =========================
@@ -40,9 +35,8 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
-  background: transparent;
-  backdrop-filter: blur(10px);
-  color: var(--text);
+  background: var(--dark);
+  color: #fff;
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
@@ -74,7 +68,7 @@ nav {
 }
 
 .nav-links a {
-  color: var(--text);
+  color: #fff;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s;
@@ -84,7 +78,7 @@ nav {
 
 .nav-links a:hover {
   background-color: rgba(255, 255, 255, 0.1);
-  color: var(--primary);
+  color: var(--accent);
 }
 
 #menu-toggle {
@@ -97,40 +91,46 @@ nav {
    Hero Section
 ========================= */
 .hero {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+  /* Background Image from your folder */
+  background-image: url("images/nyeri-county.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   color: #fff;
   padding: 2rem;
-  background-color: rgba(231, 240, 254, 0.8);
-  border-radius: 10px;
-  margin-bottom: 1rem;
 }
 
+/* The key change: Add a semi-transparent black overlay to the hero content */
 .hero-content {
   position: relative;
   z-index: 1;
+  /* This creates a black overlay that makes the text readable */
+  background-color: rgba(0, 0, 0, 0.7); /* Black with 70% opacity */
   padding: 1.5rem;
   border-radius: 10px;
   max-width: 800px;
   margin: 0 auto;
-  color: var(--dark);
+  /* Ensure text is white and stands out */
+  color: white;
 }
 
 .hero-content h1 {
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  color: var(--dark);
+  color: white;
 }
 
 .hero-content p {
   margin: 1rem auto;
   font-size: 1.2rem;
   max-width: 700px;
-  color: var(--dark);
+  color: white;
 }
 
 .btn {
@@ -155,9 +155,6 @@ nav {
 ========================= */
 section {
   padding: 5rem 2rem;
-  background-color: rgba(231, 240, 254, 0.8);
-  border-radius: 10px;
-  margin-bottom: 1rem;
 }
 
 .container {
@@ -170,16 +167,15 @@ h2 {
   margin-bottom: 2rem;
   font-size: 2rem;
   font-weight: 700;
-  color: var(--dark);
+  color: var(--secondary);
 }
 
 /* About */
-#about p {
+.about p {
   max-width: 800px;
   margin: auto;
   text-align: center;
   font-size: 1.1rem;
-  color: var(--dark);
 }
 
 /* Services (County Overview) */
@@ -191,6 +187,7 @@ h2 {
 }
 
 .service {
+  background: #fff;
   padding: 2rem;
   text-align: center;
   border-radius: 10px;
@@ -211,11 +208,15 @@ h2 {
 }
 
 /* Main Content Area */
+.main-content {
+  background-color: #f5f5f5;
+}
+
 #content-title {
     text-align: left;
     margin-bottom: 1rem;
     font-size: 1.8rem;
-    color: var(--dark);
+    color: var(--secondary);
 }
 
 #content-display {
@@ -364,6 +365,8 @@ h2 {
 
 .back-btn:hover {
   background-color: #5a6268;
+}
+
 .back-btn::before {
   content: "← ";
   margin-right: 0.5rem;
@@ -372,20 +375,79 @@ h2 {
 /* =========================
    Contact
 ========================= */
+.contact {
+  background: linear-gradient(180deg, #f5f5f5, #e9eef3);
+}
+
 .contact form {
   max-width: 600px;
   margin: auto;
   display: grid;
   gap: 1rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 15px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.form-group {
+  position: relative;
+  margin-top: 1rem;
 }
 
 .contact input,
 .contact textarea {
-  padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  width: 100%;
+  padding: 1rem 0.5rem 0.5rem;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  background: transparent;
   font-family: inherit;
   font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.contact label {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.5rem;
+  color: #666;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+/* Floating label effect */
+.contact input:focus + label,
+.contact input:valid + label,
+.contact textarea:focus + label,
+.contact textarea:valid + label {
+  top: -1rem;
+  left: 0;
+  font-size: 0.85rem;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.contact input:focus,
+.contact textarea:focus {
+  border-bottom-color: var(--primary);
+}
+
+.futuristic-btn {
+  margin-top: 1rem;
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  border: none;
+  box-shadow: 0 4px 15px rgba(26, 93, 26, 0.3);
+}
+
+.futuristic-btn:hover {
+  background: linear-gradient(45deg, var(--secondary), var(--primary));
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(26, 93, 26, 0.4);
 }
 
 /* =========================
