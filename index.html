@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nyeri ECDE Renovation Tracker</title>
+  <!-- Favicon -->
+  <link rel="icon" href="images/county-logo.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+  <!-- Header with minimalist nav -->
+  <header>
+    <nav>
+      <div class="logo">
+        <!-- County logo in header -->
+        <img src="images/county-logo.jpg" alt="County Government of Nyeri Logo" style="height: 50px; width: auto;">
+        <p>Nyeri ECDE Renovation Tracker</p></p>
+      </div>
+      <div id="menu-toggle">&#9776;</div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section with translucent background and black overlay for text -->
+  <section class="hero" id="hero">
+    <div class="hero-content fade-in">
+      <!-- Text will appear on top of a semi-transparent black overlay -->
+      <h1>Nyeri County ECDE Renovation Tracker</h1>
+      <p>Monitoring Early Childhood Development Infrastructure and Performance</p>
+      
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about fade-in">
+    <div class="container">
+      <h2>About This Portal</h2>
+      <p>
+        This portal tracks the renovation progress and displays key performance metrics for Early Childhood Development and Education (ECDE) centers across Nyeri County.
+        Explore Constituencies, Wards, and individual centers to view before and after images, student/teacher populations, and teacher-to-student ratios.
+      </p>
+    </div>
+  </section>
+
+  <!-- Services (County Overview) -->
+  <section id="services" class="services">
+    <div class="container">
+      <h2 class="fade-in">Nyeri County Overview</h2>
+      <div class="service-grid">
+        <div class="service slide-left">
+          <h3>Total ECDE Centers</h3>
+          <p>Over 1,000 centers tracked</p> <!-- Example data -->
+        </div>
+        <div class="service fade-in">
+          <h3>Renovation Progress</h3>
+          <p>65% Completed</p> <!-- Example data -->
+        </div>
+        <div class="service slide-right">
+          <h3>Avg. Teacher Ratio</h3>
+          <p>1:22</p> <!-- Example data -->
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Contact Section -->
+  <section id="contact" class="contact fade-in">
+    <div class="container">
+      <h2>Get In Touch</h2>
+      <form id="contact-form">
+        <input type="text" id="contact-name" placeholder="Your Name" required/>
+        <input type="email" id="contact-email" placeholder="Your Email" required/>
+        <textarea id="contact-message" placeholder="Your Message or Feedback" rows="5" required></textarea>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer with Terms -->
+  <footer>
+    <p>&copy; 2025 Dantedone. All rights reserved. |
+        <a href="#terms" onclick="showTerms(); return false;" style="color: #a0d6a0; text-decoration: underline;">Terms & Conditions</a>
+    </p>
+  </footer>
+  <!-- Load JavaScript -->
+  <script defer src="js/main.js"></script>
+</body>
+</html>
